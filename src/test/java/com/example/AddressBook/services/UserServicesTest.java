@@ -66,7 +66,7 @@ public class UserServicesTest {
     @Test
     void registerUserSuccess() {
         when(userRepository.findByEmail(mockUserDTO.getEmail())).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(mockUserDTO.getPassword())).thenReturn("hashedPpassword");
+        when(passwordEncoder.encode(mockUserDTO.getPassword())).thenReturn("hashedPassword");
         when(userRepository.save(any(Users.class))).thenReturn(mockUser);
 
         String result = userServices.registerUser(mockUserDTO);
