@@ -1,0 +1,45 @@
+<nav>
+  <ul>
+    <li><a routerLink="/addressbook/get">📖 Address Book</a></li>
+    <li><a routerLink="/addressbook/add">➕ Add New Address</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h2>📖 Address Book</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of addresses">
+        <td>{{ entry.id }}</td>
+        
+        <td>
+          <a [routerLink]="['/addressbook/get', entry.id]">{{ entry.name }}</a>
+        </td>
+        
+        <td>{{ entry.email }}</td>
+        <td>{{ entry.phone }}</td>
+        
+        <td>
+         <!-- Edit Button -->
+         <a [routerLink]="['/addressbook/Update', entry.id]">✏️ Edit</a>
+
+         <!-- Delete Button -->
+         <button (click)="deleteAddress(entry.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Show this message when no addresses are found -->
+  <p *ngIf="addresses.length === 0" class="text-muted">No addresses available.</p>
+</div>
